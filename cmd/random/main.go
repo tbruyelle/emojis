@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
 	"os"
-	"time"
 
 	"github.com/tbruyelle/emojis"
 )
@@ -15,6 +13,5 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	fmt.Println(emojis[r.Intn(len(emojis))])
+	fmt.Println(emojis.Random())
 }
