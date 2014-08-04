@@ -1,6 +1,7 @@
 package emojis
 
 import (
+	"encoding/json"
 	"math/rand"
 	"net/http"
 	"time"
@@ -17,6 +18,27 @@ func (e Emojis) Random() string {
 }
 
 func Load() (Emojis, error) {
+	return loadFromApi()
+}
+
+func loadFromApi() (Emojis, error) {
+	response, err := http.Get("https://api.github.com/emojis")
+	if err != nil {
+		return nil, err
+	}
+	var output map[string]string
+	err = json.NewDecoder(response.Body).Decode(&output)
+	if err != nil {
+		return nil, err
+	}
+	var emojis Emojis
+	for k, _ := range output {
+		emojis = append(emojis, ":"+k+":")
+	}
+	return emojis, nil
+}
+
+func loadFromWebsite() (Emojis, error) {
 	response, err := http.Get("http://www.emoji-cheat-sheet.com")
 	if err != nil {
 		return nil, err
