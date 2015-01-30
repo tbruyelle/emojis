@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"code.google.com/p/go-html-transform/h5"
-	"code.google.com/p/go.net/html"
+	"golang.org/x/net/html"
 )
 
 type Emojis []string
