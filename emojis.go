@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"code.google.com/p/go-html-transform/h5"
+	"github.com/imdario/go-html-transform/h5"
 	"golang.org/x/net/html"
 )
 
